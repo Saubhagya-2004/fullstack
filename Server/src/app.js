@@ -11,7 +11,7 @@ if (process.env.NODE_ENV !== "production") {
 const app = express();
 
 // ✅ Production-safe CORS
-app.use(
+app.use( 
   cors({
     origin: "*", // allow Render / Vercel frontend
     methods: ["GET", "POST", "PUT", "DELETE"],
