@@ -3,7 +3,7 @@ import { fetchItems } from "../services/api";
 import { useServerTime } from "../hooks/useServerTime";
 import { useSocket } from "../hooks/useSocket";
 import { socket } from "../services/socket";
-import ItemCard from "../components/itemcard";
+import ItemCard from "../components/ItemCard.jsx";
 import ToastContainer from "../components/Toast";
 import LoginModal from "../components/LoginModal";
 
