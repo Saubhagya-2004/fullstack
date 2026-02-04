@@ -1,17 +1,27 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
-import http from 'http';
-import { Server } from 'socket.io';
-import expressApp from './app.js';
-import registerBidsocket from './socket/bid.scocket.js';
-const app = http.createServer(expressApp);
-const port = process.env.PORT || 3000;
-const io = new Server(app, {
-    cors: {
-        origin: '*'
-    }
+import dotenv from "dotenv";
+import http from "http";
+import { Server } from "socket.io";
+import expressApp from "./app.js";
+import registerBidsocket from "./socket/bid.scocket.js";
+
+// Load env only locally
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
+const server = http.createServer(expressApp);
+
+const PORT = process.env.PORT || 3000;
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
 });
+
 registerBidsocket(io);
-app.listen(port, () => {
-    console.log(`Server listen at PORT ${port}`)
-})
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
+});
