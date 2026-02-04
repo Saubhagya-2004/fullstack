@@ -1,48 +1,28 @@
-# Multi-stage build for Node.js backend
+# -------- Base --------
 FROM node:20-alpine AS base
-
-# Install dependencies only when needed
-FROM base AS deps
 WORKDIR /app
 
-# Copy package files
+# -------- Dependencies --------
+FROM base AS deps
 COPY package*.json ./
-
-# Install dependencies
 RUN npm ci --only=production && npm cache clean --force
 
-# Development stage
-FROM base AS development
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install
-
-COPY . .
-
-EXPOSE 3000
-
-CMD ["npm", "run", "dev"]
-
-# Production stage
+# -------- Production --------
 FROM base AS production
+
 WORKDIR /app
 
 # Copy production dependencies
 COPY --from=deps /app/node_modules ./node_modules
 
-# Copy source code
+# Copy source
 COPY . .
 
 # Create non-root user
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nodejs -u 1001
-
-# Change ownership
-RUN chown -R nodejs:nodejs /app
-
+RUN addgroup -S nodejs && adduser -S nodejs -G nodejs
 USER nodejs
 
+# Render provides PORT automatically
 EXPOSE 3000
 
 CMD ["npm", "start"]
