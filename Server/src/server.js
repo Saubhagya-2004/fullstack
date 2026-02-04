@@ -1,15 +1,17 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
 import http from 'http';
-import {Server} from 'socket.io';
-import app from './app.js';
+import { Server } from 'socket.io';
+import expressApp from './app.js';
 import registerBidsocket from './socket/bid.scocket.js';
-const server = http.createServer(app);
-const port = 3000;
-const io = new Server(server,{
-    cors:{
-        origin:'*'
+const app = http.createServer(expressApp);
+const port = process.env.PORT;
+const io = new Server(app, {
+    cors: {
+        origin: '*'
     }
 });
 registerBidsocket(io);
-server.listen(port,()=>{
+app.listen(port, () => {
     console.log(`Server listen at PORT ${port}`)
 })
