@@ -1,14 +1,24 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import itemroutes from "./routes/item.routes.js";
 
-import express from 'express';
-import cors from 'cors';
-import itemroutes from './routes/item.routes.js';
+// Load .env ONLY in local dev
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 const app = express();
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-}));
+
+// ✅ Production-safe CORS
+app.use(
+  cors({
+    origin: "*", // allow Render / Vercel frontend
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 app.use(express.json());
-app.use('/items', itemroutes);
+app.use("/items", itemroutes);
+
 export default app;
