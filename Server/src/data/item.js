@@ -6,7 +6,7 @@ export const items = [
         currentBid: 100000,
         highestBidderId: null,
         imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
-        auctionEndTime: Date.now() + 4*30 *30* 1000 // 30 seconds
+        auctionEndTime: Date.now() + 4.5*30 *30* 1000 // 30 seconds
     },
     {
         id: "2",
@@ -15,7 +15,7 @@ export const items = [
         currentBid: 75000,
         highestBidderId: null,
         imageUrl: "https://images.unsplash.com/photo-1679014539437-b925a3f95da3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGlwaG9uZSUyMDE0fGVufDB8MHwwfHx8MA%3D%3D",
-        auctionEndTime: Date.now() + 1 * 60 * 60 * 1000
+        auctionEndTime: Date.now() + 1.2 * 60 * 60 * 1000
     },
     {
         id: "3",
@@ -24,7 +24,7 @@ export const items = [
         currentBid: 85000,
         highestBidderId: null,
         imageUrl: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGlwaG9uZXxlbnwwfHwwfHx8MA%3D%3D",
-        auctionEndTime: Date.now() + 2 * 60 * 60 * 1000
+        auctionEndTime: Date.now() + 5.5 * 60 * 60 * 1000
     },
     {
         id: "4",
