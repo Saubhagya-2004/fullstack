@@ -6,7 +6,7 @@ export const items = [
         currentBid: 100000,
         highestBidderId: null,
         imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=400&h=300&fit=crop",
-        auctionEndTime: Date.now() + 1*30 *30* 1000 // 30 seconds
+        auctionEndTime: Date.now() + 4*30 *30* 1000 // 30 seconds
     },
     {
         id: "2",
